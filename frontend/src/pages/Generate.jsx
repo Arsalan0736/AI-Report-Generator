@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FileText, Upload, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FileText, Upload, Loader2, Download, Shield, X } from 'lucide-react';
 
 const Generate = () => {
   const [formData, setFormData] = useState({
@@ -15,12 +15,18 @@ const Generate = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [preview, setPreview] = useState(null);
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    // Add your form submission logic here
-    setTimeout(() => setIsLoading(false), 2000); // Simulated API call
+    // Simulate report generation
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowPreviewModal(true);
+    }, 2000);
   };
 
   const handleFileChange = (e) => {
@@ -34,6 +40,35 @@ const Generate = () => {
       reader.readAsDataURL(file);
     }
   };
+
+  const handleDownload = async (plan) => {
+    setSelectedPlan(plan);
+    setIsProcessingPayment(true);
+    // Simulate payment processing
+    setTimeout(() => {
+      setIsProcessingPayment(false);
+      // Here you would typically handle the actual payment and download
+      alert(`Payment successful! Downloading ${plan === 'basic' ? 'basic' : 'plagiarism-free'} report...`);
+      setShowPreviewModal(false);
+    }, 2000);
+  };
+
+  const pricingPlans = [
+    {
+      id: 'basic',
+      name: 'Basic Report',
+      price: '₹21',
+      features: ['Download Report', 'Standard Format', 'Basic Support'],
+      icon: <Download className="h-6 w-6" />,
+    },
+    {
+      id: 'premium',
+      name: 'Plagiarism-Free Report',
+      price: '₹30',
+      features: ['Download Report', 'Plagiarism Check', 'Premium Support', 'Format Customization'],
+      icon: <Shield className="h-6 w-6" />,
+    },
+  ];
 
   return (
     <div className="min-h-screen py-12">
@@ -216,6 +251,102 @@ const Generate = () => {
               </div>
             </div>
           </div>
+
+          {/* Preview Modal */}
+          <AnimatePresence>
+            {showPreviewModal && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                >
+                  <div className="p-6">
+                    <div className="flex justify-between items-center mb-6">
+                      <h2 className="text-2xl font-bold text-gray-900">Report Preview</h2>
+                      <button
+                        onClick={() => setShowPreviewModal(false)}
+                        className="text-gray-500 hover:text-gray-700"
+                      >
+                        <X className="h-6 w-6" />
+                      </button>
+                    </div>
+
+                    {/* Report Preview */}
+                    <div className="mb-8 p-6 bg-gray-50 rounded-lg">
+                      <div className="space-y-4">
+                        <h3 className="text-xl font-semibold text-gray-900">{formData.title}</h3>
+                        <div className="h-px bg-gray-200" />
+                        <div className="space-y-2">
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium">Department:</span> {formData.department}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium">Year:</span> {formData.year}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium">Guide:</span> {formData.guideName}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium">Team Members:</span> {formData.teamMembers}
+                          </p>
+                        </div>
+                        <div className="h-px bg-gray-200" />
+                        <p className="text-gray-700 whitespace-pre-wrap">{formData.description}</p>
+                      </div>
+                    </div>
+
+                    {/* Pricing Plans */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {pricingPlans.map((plan) => (
+                        <div
+                          key={plan.id}
+                          className={`card p-6 cursor-pointer transition-all ${
+                            selectedPlan === plan.id ? 'ring-2 ring-indigo-600' : ''
+                          }`}
+                          onClick={() => setSelectedPlan(plan.id)}
+                        >
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-2">
+                              {plan.icon}
+                              <h3 className="text-lg font-semibold text-gray-900">{plan.name}</h3>
+                            </div>
+                            <span className="text-2xl font-bold text-indigo-600">{plan.price}</span>
+                          </div>
+                          <ul className="space-y-2 mb-6">
+                            {plan.features.map((feature, index) => (
+                              <li key={index} className="flex items-center gap-2 text-gray-600">
+                                <div className="h-1.5 w-1.5 rounded-full bg-indigo-600" />
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                          <button
+                            onClick={() => handleDownload(plan.id)}
+                            disabled={isProcessingPayment}
+                            className="btn btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 text-lg min-w-[200px]"
+                          >
+                            {isProcessingPayment && selectedPlan === plan.id ? (
+                              <>
+                                <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                Processing...
+                              </>
+                            ) : (
+                              <>
+                                <Download className="h-5 w-5" />
+                                Download Now
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
     </div>
