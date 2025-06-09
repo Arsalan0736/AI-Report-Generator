@@ -124,16 +124,16 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn btn-primary w-full flex items-center justify-center gap-2"
+                  className="btn btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 text-lg min-w-[200px]"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       Sending...
                     </>
                   ) : (
                     <>
-                      <Send className="h-4 w-4" />
+                      <Send className="h-5 w-5" />
                       Send Message
                     </>
                   )}

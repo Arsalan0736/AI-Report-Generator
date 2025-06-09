@@ -40,17 +40,17 @@ const Home = () => {
                 Transform your project documentation with our AI-powered report generator.
                 Save time and create high-quality reports in minutes.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/generate"
-                  className="btn btn-primary inline-flex items-center justify-center gap-2"
+                  className="btn btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-lg min-w-[200px]"
                 >
                   Get Started
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-5 w-5" />
                 </Link>
                 <Link
                   to="/about"
-                  className="btn btn-secondary"
+                  className="btn btn-secondary px-8 py-4 text-lg min-w-[200px]"
                 >
                   Learn More
                 </Link>
@@ -62,14 +62,43 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex-1"
             >
-              <div className="relative">
+              <div className="relative w-full h-[400px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg transform rotate-3"></div>
-                <div className="relative bg-white p-8 rounded-lg shadow-xl">
-                  <div className="space-y-4">
-                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                    <div className="h-4 bg-gray-200 rounded"></div>
-                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                <div className="relative bg-white p-8 rounded-lg shadow-xl h-full">
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="relative w-64 h-64">
+                      {/* 3D Document Model */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-lg transform rotate-12 shadow-lg">
+                        <div className="absolute inset-0 bg-white/50 backdrop-blur-sm rounded-lg">
+                          <div className="p-6 space-y-4">
+                            <div className="h-4 bg-indigo-200 rounded w-3/4"></div>
+                            <div className="h-4 bg-indigo-200 rounded"></div>
+                            <div className="h-4 bg-indigo-200 rounded w-5/6"></div>
+                            <div className="h-4 bg-indigo-200 rounded w-2/3"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-200 to-purple-200 rounded-lg transform -rotate-6 shadow-lg">
+                        <div className="absolute inset-0 bg-white/50 backdrop-blur-sm rounded-lg">
+                          <div className="p-6 space-y-4">
+                            <div className="h-4 bg-indigo-300 rounded w-3/4"></div>
+                            <div className="h-4 bg-indigo-300 rounded"></div>
+                            <div className="h-4 bg-indigo-300 rounded w-5/6"></div>
+                            <div className="h-4 bg-indigo-300 rounded w-2/3"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-300 to-purple-300 rounded-lg shadow-lg">
+                        <div className="absolute inset-0 bg-white/50 backdrop-blur-sm rounded-lg">
+                          <div className="p-6 space-y-4">
+                            <div className="h-4 bg-indigo-400 rounded w-3/4"></div>
+                            <div className="h-4 bg-indigo-400 rounded"></div>
+                            <div className="h-4 bg-indigo-400 rounded w-5/6"></div>
+                            <div className="h-4 bg-indigo-400 rounded w-2/3"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -120,13 +149,21 @@ const Home = () => {
               <p className="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
                 Start generating professional reports in minutes with our AI-powered platform.
               </p>
-              <Link
-                to="/generate"
-                className="btn bg-white text-indigo-600 hover:bg-indigo-50 inline-flex items-center justify-center gap-2"
-              >
-                Get Started Now
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  to="/generate"
+                  className="btn btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-lg min-w-[200px]"
+                >
+                  Get Started
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="btn btn-secondary px-8 py-4 text-lg min-w-[200px]"
+                >
+                  Contact Us
+                </Link>
+              </div>
             </div>
           </div>
         </div>

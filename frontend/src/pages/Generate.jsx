@@ -108,16 +108,16 @@ const Generate = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="btn btn-primary w-full flex items-center justify-center gap-2"
+                  className="btn btn-primary w-full flex items-center justify-center gap-2 px-8 py-4 text-lg min-w-[200px]"
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                      Generating Report...
+                      <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      Generating...
                     </>
                   ) : (
                     <>
-                      <FileText className="h-4 w-4" />
+                      <FileText className="h-5 w-5" />
                       Generate Report
                     </>
                   )}
