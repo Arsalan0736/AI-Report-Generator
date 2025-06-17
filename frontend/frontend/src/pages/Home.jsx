@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, FileText, Zap, Shield, GraduationCap, BookOpen, Clock } from 'lucide-react';
-import Marquee from '../components/Marquee';
 
 const Home = () => {
   const features = [
@@ -24,14 +23,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Top Marquee */}
-      <div className="bg-indigo-600 text-white py-2">
-        <Marquee 
-          text="✨ Create Professional Reports in Minutes ✨ Save Time & Get Better Grades ✨ Perfect for 1st, 2nd, and 3rd year students ✨"
-          speed={30}
-          className="text-sm font-medium"
-        />
-      </div>
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <div className="container mx-auto px-4">
@@ -154,81 +145,35 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 to-purple-50"></div>
-        <div className="container mx-auto px-4 relative">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-6xl mx-auto"
+            className="card p-8 md:p-12 text-center"
           >
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left Content */}
-              <div className="text-center lg:text-left">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  Ready to Create Your{' '}
-                  <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                    Project Report?
-                  </span>
-                </h2>
-                <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
-                  Start generating professional project reports that meet Mumbai University standards.
-                  Perfect for all year students - from first year to final year projects.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Link
-                    to="/generate"
-                    className="btn btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-lg min-w-[200px] group"
-                  >
-                    Get Started
-                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="btn btn-secondary px-8 py-4 text-lg min-w-[200px]"
-                  >
-                    Contact Us
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right Content - 3D Card Effect */}
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl transform rotate-3"></div>
-                <div className="relative bg-white p-8 rounded-2xl shadow-xl">
-                  <div className="space-y-6">
-                    {/* Feature List */}
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
-                        <FileText className="h-6 w-6 text-indigo-600" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Professional Format</h3>
-                        <p className="text-gray-600">Follows Mumbai University's official project report guidelines</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-                        <Zap className="h-6 w-6 text-purple-600" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Quick Generation</h3>
-                        <p className="text-gray-600">Create complete reports in minutes, not hours</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
-                        <Shield className="h-6 w-6 text-indigo-600" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-2">Quality Assured</h3>
-                        <p className="text-gray-600">Get better grades with professionally formatted reports</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Ready to Create Your Project Report?
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
+              Start generating professional project reports that meet Mumbai University standards.
+              Perfect for all year students - from first year to final year projects.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/generate"
+                className="btn btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 text-lg min-w-[200px]"
+              >
+                Get Started
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+              <Link
+                to="/contact"
+                className="btn btn-secondary px-8 py-4 text-lg min-w-[200px]"
+              >
+                Contact Us
+              </Link>
             </div>
           </motion.div>
         </div>
